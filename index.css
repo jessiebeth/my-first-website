@@ -1,0 +1,383 @@
+/* Reset & base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background: #fceeee;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Cursive Title */
+.title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 100px;
+  text-align: center;
+  position: absolute;
+  top: 7px;
+  left: 49%;
+  transform: translateX(-50%);
+  z-index: 10;
+  color: #e46c9e;
+  pointer-events: none;
+}
+
+.title span {
+  font-weight: 700;
+}
+
+/* Main layout */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 120px;
+  gap: 40px;
+}
+
+/* Music player */
+.music-player {
+  background: #eaaec2;
+  border-radius: 10px;
+  width: 240px; height: 390px;
+  padding: 10px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  margin-top: -19px;
+}
+
+.player-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 50px;
+}
+
+.cover {
+  width: 180px;
+  height: 180px;
+  
+}
+
+.controls button {
+  background-color: #fcd8e4;
+  color: #5e2c48;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px #c87d9e;
+  margin-top: 10px;
+}
+
+.controls button:hover {
+  background-color: #ffeef4;
+}
+
+
+/* Center pink box */
+.center-box {
+  width: 600px;
+  height: 400px;
+  background: #ffeef4;
+  border: 4px solid #e799b5;
+  border-radius: 20px;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+  margin-top: -20px;
+}
+
+.video-intro {
+  width: 100%;
+  max-width: 800px;
+  height: 300px;
+  margin: 30px auto;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.video-intro video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ⬅️ This makes it zoom and fill like a background */
+  border-radius: 20px;
+}
+
+
+
+
+
+/* Right buttons */
+.right-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 10px;
+  height: 93%; /* take full height */
+}
+
+
+.btn {
+  background: #eaaec2;
+  border: none;
+  border-radius: 40px; /* back to oblong */
+  padding: 20px 40px;
+  width: 240px;
+  height: 80px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #7d0b51;
+  box-shadow: 6px 6px 0px #25134b;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-family: 'Quicksand', sans-serif;
+}
+
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+.decor-icon {
+  width: 100px;
+  height: 100px;
+  margin-top: 20px;
+  opacity: 0.9;
+}
+
+.game-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.game-icon {
+  width: 90px;
+  height: 90px;
+  border-radius: 20px; /* still rounded but square shape */
+  object-fit: cover; /* ensures the image fills the square */
+  box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  
+}
+
+
+.game-icon:hover {
+  transform: scale(1.1);
+}
+
+
+
+
+
+/* Footer */
+footer {
+  padding: 10px;
+  background: #fcd8e4;
+  text-align: center;
+  color: #aa5e7d;
+  font-weight: bold;
+}
+
+
+
+
+
+.story-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.story-card {
+  background: #ffeef4;
+  padding: 20px 30px;
+  border-radius: 20px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 18px;
+  color: #7d0b51;
+  box-shadow: 4px 4px 0px #d48aa1;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-align: center;
+  width: 220px;
+}
+
+.story-card:hover {
+  transform: scale(1.05);
+  background: #fcd8e4;
+}
+
+.story-reader {
+  background: #fff4f9;
+  padding: 20px;
+  border-radius: 15px;
+  font-family: 'Quicksand', sans-serif;
+  color: #5a0031;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+.story-reader h2 {
+  font-family: 'Dancing Script', cursive;
+  color: #c06;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.story-btns {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.story-btns button {
+  padding: 10px 15px;
+  border: none;
+  background: #ffb3c6;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 0 5px;
+  transition: 0.2s ease;
+}
+
+.story-btns button:hover {
+  background: #f48aad;
+}
+
+/* === Sleep Dare Styles === */
+.sleep-dare {
+  text-align: center;
+  padding: 20px;
+  background: #ffe6f1; /* soft pink */
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-family: 'Quicksand', sans-serif;
+  color: #c06;
+  max-width: 400px;
+  margin: auto;
+}
+
+.sleep-dare h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.sleep-dare p {
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+.sleep-inputs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.sleep-inputs label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  color: #a04;
+}
+
+.sleep-inputs input {
+  padding: 6px;
+  border: 2px solid #f7b6d2;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1rem;
+  width: 60px;
+  outline: none;
+  background-color: #fff0f6;
+}
+
+.sleep-btn {
+  background: #ff66a3;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sleep-btn:hover {
+  background: #e05590;
+  transform: scale(1.05);
+}
+
+#countdown {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #a03366;
+}
+
+/* Bible Verse Section */
+.bible-box {
+  background: #ffe6f0;
+  border-radius: 18px;
+  padding: 20px;
+  text-align: center;
+  font-family: 'Quicksand', sans-serif;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.bible-box h2 {
+  color: #d63384;
+  margin-bottom: 12px;
+}
+
+.bible-box p {
+  font-size: 1rem;
+  font-style: italic;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.reflect-btn {
+  background: #ff85a2;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.reflect-btn:hover {
+  background: #ff4d73;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}

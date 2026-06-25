@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UnwindByte</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <header>
+    <h1 class="title">Unwind<span>Byte</span></h1>
+  </header>
+
+  <main>
+    <!-- Music Player Section -->
+    <section class="music-player">
+      <article class="player-box">
+        <figure class="cover">
+          <img src="melodyy.jpg" width="180" height="178" alt="Song Cover">
+        </figure>
+        <nav class="controls" aria-label="Music Controls">
+          <button id="prevBtn" aria-label="Previous Song">&lt;&lt;</button>
+          <button id="playBtn2" aria-label="Play Song">&#9654;</button>
+          <button id="nextBtn" aria-label="Next Song">&gt;&gt;</button>
+        </nav>
+      </article>
+    </section>
+
+    <!-- Center Video Introduction Section -->
+    <section class="center-box" id="centerBox">
+      <figure class="video-intro">
+        <video autoplay muted loop playsinline>
+          <source src="introvideo.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </figure>
+    </section>
+
+    <!-- Right Side Buttons Section -->
+    <aside class="right-buttons">
+      <button class="btn" id="menuBtn" onclick="loadMainMenu()">Menu</button>
+      <button class="btn" id="playBtn">Play</button>
+      <button class="btn" id="breakBtn">Need a break?</button>
+    </aside>
+  </main>
+
+  <footer>
+    © 2026 Goodwall Challenge 
+  </footer>
+
+  <script src="index.js"></script>
+
+  
+</body>
+</html>

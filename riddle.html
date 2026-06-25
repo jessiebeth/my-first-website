@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riddle Guess Game</title>
+</head>
+
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #fceeee;
+}
+
+.container {
+    background-color: #f4d8e4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.riddle-container {
+    margin-bottom: 20px;
+}
+
+#riddle {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #555;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #c288aa;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    background-color: #f18686;
+}
+
+button:disabled {
+    background-color: #6c757d;
+}
+
+#result {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #333;
+    margin-bottom: 20px;
+}
+</style>
+<body>
+    <div class="container">
+        <h1>Riddle Guess Game</h1>
+        <div class="riddle-container">
+            <p id="riddle">Press 'Get Riddle' to start!</p>
+            <input type="text" id="guess-input" placeholder="Type your guess here..." disabled>
+            <button id="check-guess-btn" disabled>Check Guess</button>
+            <button id="get-riddle-btn">Get Riddle</button>
+        </div>
+        <p id="result"></p>
+        <button id="reveal-answer-btn" disabled>Reveal Answer</button>
+    </div>
+    
+    <!-- Script JS -->
+    <script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+    const riddleText = document.getElementById('riddle');
+    const guessInput = document.getElementById('guess-input');
+    const checkGuessBtn = document.getElementById('check-guess-btn');
+    const getRiddleBtn = document.getElementById('get-riddle-btn');
+    const revealAnswerBtn = document.getElementById('reveal-answer-btn');
+    const resultText = document.getElementById('result');
+    
+    let currentAnswer = '';
+
+    // Fetch Riddle from API
+    async function fetchRiddle() {
+        try {
+            const response = await fetch('https://official-joke-api.appspot.com/jokes/general/random');
+            const data = await response.json();
+            const riddle = data[0];
+            currentAnswer = riddle.punchline.toLowerCase();
+            riddleText.textContent = riddle.setup;
+            guessInput.disabled = false;
+            checkGuessBtn.disabled = false;
+            revealAnswerBtn.disabled = false;
+            guessInput.value = '';
+            resultText.textContent = '';
+        } catch (error) {
+            riddleText.textContent = 'Failed to fetch riddle. Please try again.';
+        }
+    }
+
+    // Check User's Guess
+    function checkGuess() {
+        const userGuess = guessInput.value.trim().toLowerCase();
+        if (userGuess === currentAnswer) {
+            resultText.textContent = 'Correct! 🎉';
+            resultText.style.color = '#28a745';
+        } else {
+            resultText.textContent = 'Wrong guess, try again! ❌';
+            resultText.style.color = '#dc3545';
+        }
+    }
+
+    // Reveal the Correct Answer
+    function revealAnswer() {
+        resultText.textContent = `The correct answer is: ${currentAnswer}`;
+        resultText.style.color = '#007bff';
+    }
+
+    // Event Listeners
+    getRiddleBtn.addEventListener('click', fetchRiddle);
+    checkGuessBtn.addEventListener('click', checkGuess);
+    revealAnswerBtn.addEventListener('click', revealAnswer);
+});
+    </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-s
+  e=1.0"/>
+  <title>Number Puzzle Game</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #fef6f6;
+      color: #444;
+    }
+
+    .container {
+      background-color: #fffdfd;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 30px;
+      font-weight: 500;
+      color: #666;
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(4, 70px);
+      grid-gap: 10px;
+      justify-content: center;
+    }
+
+    .tile {
+      width: 70px;
+      height: 70px;
+      background-color: #fde2e4;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      font-weight: 500;
+      cursor: pointer;
+      border-radius: 12px;
+      transition: background-color 0.2s, transform 0.1s ease;
+      user-select: none;
+    }
+
+    .tile:hover {
+      background-color: #fad2e1;
+      transform: scale(1.03);
+    }
+
+    .tile:empty {
+      background-color: #f9f9f9;
+      cursor: default;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 10px 20px;
+      font-size: 14px;
+      background-color: #c5dedd;
+      color: #333;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #dbe8e7;
+    }
+  </style>
+</head>
+<body>
+  <section class="container">
+    <h1>UnwindByte</h1>
+    <section class="board" id="board"></section>
+    <button onclick="startGame()">Start New Game</button>
+  </section>
+
+  <script>
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function createBoard() {
+      const board = document.getElementById('board');
+      board.innerHTML = '';
+      const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ''];
+      shuffleArray(numbers);
+
+      for (let num of numbers) {
+        const tile = document.createElement('section');
+        tile.className = 'tile';
+        tile.textContent = num;
+        tile.onclick = () => moveTile(tile);
+        board.appendChild(tile);
+      }
+    }
+
+    function moveTile(tile) {
+      const tiles = Array.from(document.querySelectorAll('.tile'));
+      const emptyTile = tiles.find(t => t.textContent.trim() === '');
+      if (!emptyTile) return;
+
+      const tileIndex = tiles.indexOf(tile);
+      const emptyIndex = tiles.indexOf(emptyTile);
+
+      const isAdjacent = 
+        Math.abs(tileIndex - emptyIndex) === 1 && Math.floor(tileIndex / 4) === Math.floor(emptyIndex / 4) ||
+        Math.abs(tileIndex - emptyIndex) === 4;
+
+      if (isAdjacent) {
+        [tile.textContent, emptyTile.textContent] = [emptyTile.textContent, tile.textContent];
+      }
+
+      const currentNumbers = tiles.map(t => t.textContent);
+      if (
+        currentNumbers.slice(0, 15).every((val, i) => val == (i + 1)) &&
+        currentNumbers[15] === ''
+      ) {
+        setTimeout(() => alert('🎉 Nice! You solved it!'), 100);
+      }
+      
+    }
+
+    function startGame() {
+      createBoard();
+    }
+
+    document.addEventListener('DOMContentLoaded', startGame);
+  </script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    * {
+    padding: 0;
+    margin: 0;
+    font-family: "Noto Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+}
+
+body {
+    background-color: fceeee;
+    color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-size: 30px;
+}
+
+h1 {
+    padding-bottom: 2em;
+}
+p{
+    padding: 1em;
+}
+#container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.2em;
+}
+
+.btn-box {
+    height: 2em;
+    width: 2em;
+    text-align: center;
+    border-radius: 0.3em;
+    background-color: #f4f1f1;
+    font-size: 1em;
+    cursor: pointer;
+    color: black;
+    border: 2px solid rgb(0, 0, 0);
+}
+.btn-box:hover{
+    transform: scale(1.05); 
+    background-color: white;
+}
+.reset{
+    margin: 1em;
+    padding: 0.5em;
+    border-radius: 0.8em;
+    background-color: rgb(255, 102, 184);
+    border: none;
+    color: white;
+    font-size: 0.5em;
+    align-items: normal;
+    cursor: pointer;
+}
+.reset:hover{
+    background-color: rgb(255, 176, 233);
+    transform: scale(1.05); 
+}
+</style>
+
+<body>
+    <h1>TIC-TAC-TOE</h1>
+    <p class="msg"></p>
+    <div id="container">
+        <button class="btn-box"></button>
+        <button class="btn-box"></button>
+        <button class="btn-box"></button>
+        <button class="btn-box"></button>
+        <button class="btn-box"></button>
+        <button class="btn-box"></button>
+        <button class="btn-box"></button>
+        <button class="btn-box"></button>
+        <button class="btn-box"></button>
+    </div>
+    <button class="reset">Reset Game</button>
+    <script>
+        let turnO = true;
+let btnBox = document.querySelectorAll('.btn-box')
+let reset = document.querySelector('.reset')
+let msg = document.querySelector('.msg')
+btnBox.forEach((box) => {
+    box.addEventListener('click', () => {
+        if (box.innerHTML === "")
+            if (turnO) {
+                box.innerHTML = "O";
+                turnO = false
+            }
+            else {
+                box.innerHTML = "X";
+                turnO = true
+            }
+        checkWinner();
+    })
+})
+reset.addEventListener('click', () => {
+    btnBox.forEach((box) => {
+        box.innerHTML = ""
+        box.disabled = false
+        msg.innerHTML = ""
+    })
+}
+)
+
+let winPatterns = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+];
+const checkWinner = () => {
+    for (i = 0; i < winPatterns.length; i++) {
+        const [a, b, c] = winPatterns[i]
+        const valA = btnBox[a].innerText;
+        const valB = btnBox[b].innerText;
+        const valC = btnBox[c].innerText;
+        if (valA != "" && valB != "" && valC != "") {
+            if (valA === valB && valB === valC) {
+                msg.append("Winner is: ", valA)
+                disableBox()
+            }
+            
+        }
+    }
+    if ([...btnBox].every(box => box.innerText !== "")) {
+        msg.append("It's a draw!");
+    }
+}
+const disableBox = () => {
+    btnBox.forEach((box) => {
+        box.disabled = true
+    })
+
+}
+    </script>
+</body>
+
+</html>
